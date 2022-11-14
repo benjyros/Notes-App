@@ -1,26 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
+import note from './components/note.js';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const onPress = () => alert("helo");
-
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>Notes</Text>
-      </View>
-      <View style={styles.main}>
-
-        <Text>Open up App.js to start working on your app!</Text>
-
-      </View>
-      <View style={styles.button}>
-        <TouchableOpacity style={styles.newNote} onPress={onPress}>
-          <Text style={styles.buttonText}>New note</Text>
-        </TouchableOpacity>
-      </View>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={note.home} options={{ title: 'Welcome' }}/>
+        <Stack.Screen name="Create note" component={note.createNote}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
